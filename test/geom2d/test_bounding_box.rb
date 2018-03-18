@@ -25,6 +25,12 @@ describe Geom2D::BoundingBox do
     end
   end
 
+  it "returns the width and height" do
+    @bbox += Geom2D::Point(10, 5)
+    assert_equal(10, @bbox.width)
+    assert_equal(5, @bbox.height)
+  end
+
   it "returns a useful inspection string" do
     assert_equal("BBox[0, 0, 0, 0]", @bbox.inspect)
   end

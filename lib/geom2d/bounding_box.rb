@@ -16,42 +16,52 @@ module Geom2D
   class BoundingBox
 
     # The minimum x-coordinate.
-    attr_reader :x_min
+    attr_reader :min_x
 
     # The minimum y-coordinate.
-    attr_reader :y_min
+    attr_reader :min_y
 
     # The maximum x-coordinate.
-    attr_reader :x_max
+    attr_reader :max_x
 
     # The maximum y-coordinate.
-    attr_reader :y_max
+    attr_reader :max_y
 
     # Creates a new BoundingBox.
-    def initialize(x_min = 0, y_min = 0, x_max = 0, y_max = 0)
-      @x_min = x_min
-      @y_min = y_min
-      @x_max = x_max
-      @y_max = y_max
+    def initialize(min_x = 0, min_y = 0, max_x = 0, max_y = 0)
+      @min_x = min_x
+      @min_y = min_y
+      @max_x = max_x
+      @max_y = max_y
     end
 
     # Updates this bounding box to also contain the given bounding box or point.
     def add!(other)
       case other
       when BoundingBox
-        @x_min = [x_min, other.x_min].min
-        @y_min = [y_min, other.y_min].min
-        @x_max = [x_max, other.x_max].max
-        @y_max = [y_max, other.y_max].max
+        @min_x = [min_x, other.min_x].min
+        @min_y = [min_y, other.min_y].min
+        @max_x = [max_x, other.max_x].max
+        @max_y = [max_y, other.max_y].max
       when Point
-        @x_min = [x_min, other.x].min
-        @y_min = [y_min, other.y].min
-        @x_max = [x_max, other.x].max
-        @y_max = [y_max, other.y].max
+        @min_x = [min_x, other.x].min
+        @min_y = [min_y, other.y].min
+        @max_x = [max_x, other.x].max
+        @max_y = [max_y, other.y].max
       else
         raise ArgumentError, "Can only use another BoundingBox or Point"
       end
       self
+    end
+
+    # Returns the width of the bounding box.
+    def width
+      @max_x - @min_x
+    end
+
+    # Returns the height of the bounding box.
+    def height
+      @max_y - @min_y
     end
 
     # Returns a bounding box containing this bounding box and the argument.
@@ -60,13 +70,13 @@ module Geom2D
     end
     alias + add
 
-    # Returns the bounding box as an array of the form [x_min, y_min, x_max, y_max].
+    # Returns the bounding box as an array of the form [min_x, min_y, max_x, max_y].
     def to_a
-      [@x_min, @y_min, @x_max, @y_max]
+      [@min_x, @min_y, @max_x, @max_y]
     end
 
     def inspect #:nodoc:
-      "BBox[#{x_min}, #{y_min}, #{x_max}, #{y_max}]"
+      "BBox[#{min_x}, #{min_y}, #{max_x}, #{max_y}]"
     end
 
   end

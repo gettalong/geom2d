@@ -194,7 +194,7 @@ module Geom2D
       def run
         subject_bb = @subject.bbox
         clipping_bb = @clipping.bbox
-        min_of_max_x = [subject_bb.x_max, clipping_bb.x_max].min
+        min_of_max_x = [subject_bb.max_x, clipping_bb.max_x].min
 
         return self if trivial_operation(subject_bb, clipping_bb)
 
@@ -204,7 +204,7 @@ module Geom2D
         until @event_queue.empty?
           event = @event_queue.last
           if (@operation == :intersection && event.point.x > min_of_max_x) ||
-              (@operation == :difference && event.point.x > subject_bb.x_max)
+              (@operation == :difference && event.point.x > subject_bb.max_x)
             connect_edges
             return self
           end
@@ -253,8 +253,8 @@ module Geom2D
             @result = (@subject.size == 0 ? @clipping : @subject)
           end
           true
-        elsif subject_bb.x_min > clipping_bb.x_max || clipping_bb.x_min > subject_bb.x_max ||
-            subject_bb.y_min > clipping_bb.y_max || clipping_bb.y_min > subject_bb.y_max
+        elsif subject_bb.min_x > clipping_bb.max_x || clipping_bb.min_x > subject_bb.max_x ||
+            subject_bb.min_y > clipping_bb.max_y || clipping_bb.min_y > subject_bb.max_y
           if @operation == :difference
             @result = @subject
           elsif @operation == :union || @operation == :xor
