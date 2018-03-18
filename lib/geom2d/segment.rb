@@ -8,22 +8,9 @@
 # of the MIT license.  See the LICENSE file for details.
 #++
 
-require 'geom2d/utils'
-require 'geom2d/point'
+require 'geom2d'
 
 module Geom2D
-
-  # Creates a new Segment from +start_point+ to +end_point+ or, if +vector+ is given, from
-  # +start_point+ to +start_point+ + +vector+.
-  def self::Segment(start_point, end_point = nil, vector: nil)
-    if end_point
-      Segment.new(start_point, end_point)
-    elsif vector
-      Segment.new(start_point, start_point + vector)
-    else
-      raise ArgumentError, "Either end_point or a vector must be given"
-    end
-  end
 
   # Represents a line segment.
   class Segment

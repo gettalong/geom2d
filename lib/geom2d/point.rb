@@ -8,23 +8,9 @@
 # of the MIT license.  See the LICENSE file for details.
 #++
 
-require 'geom2d/utils'
-require 'geom2d/bounding_box'
+require 'geom2d'
 
 module Geom2D
-
-  # Creates a new Point object from the given coordinates.
-  #
-  # See: Polygon.new
-  def self::Point(x, y = nil)
-    if x.kind_of?(Point)
-      x
-    elsif y
-      Point.new(x, y)
-    else
-      Point.new(*x)
-    end
-  end
 
   # Represents a point.
   class Point

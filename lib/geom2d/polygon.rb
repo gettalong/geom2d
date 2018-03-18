@@ -8,17 +8,9 @@
 # of the MIT license.  See the LICENSE file for details.
 #++
 
-require 'geom2d/point'
-require 'geom2d/segment'
+require 'geom2d'
 
 module Geom2D
-
-  # Creates a new Polygon object from the given vertices.
-  #
-  # See: Polygon.new
-  def self::Polygon(*vertices)
-    Polygon.new(vertices)
-  end
 
   # Represents a polygon.
   class Polygon

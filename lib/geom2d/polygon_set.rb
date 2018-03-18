@@ -12,11 +12,6 @@ require 'geom2d/polygon'
 
 module Geom2D
 
-  # Creates a PolygonSet from the given array of Polygon instances.
-  def self::PolygonSet(*polygons)
-    PolygonSet.new(polygons)
-  end
-
   # Represents a set of polygons.
   class PolygonSet
 
