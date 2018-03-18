@@ -22,6 +22,10 @@ describe Geom2D::Polygon do
     assert_equal([1, 1], @polygon[2])
   end
 
+  it "enumerates the vertices" do
+    assert_equal(@vertices, @polygon.each_vertex.to_a)
+  end
+
   it "allows adding points to the end" do
     polygon = Geom2D::Polygon.new
     polygon << [0, 0] << [1, 0]

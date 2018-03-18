@@ -44,6 +44,14 @@ module Geom2D
       @vertices.pop
     end
 
+    # Calls the given block once for each vertex of the polygon.
+    #
+    # If no block is given, an Enumerator is returned.
+    def each_vertex(&block)
+      return to_enum(__method__) unless block_given?
+      @vertices.each(&block)
+    end
+
     # Calls the given block once for each segment in the polygon.
     #
     # If no block is given, an Enumerator is returned.
