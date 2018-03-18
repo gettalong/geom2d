@@ -12,13 +12,13 @@ describe Geom2D::PolygonSet do
 
   it "allows adding polygons" do
     @ps << @polygon2
-    assert_equal(2, @ps.size)
+    assert_equal(2, @ps.nr_of_contours)
   end
 
   it "allows joining another polygon set" do
     other = Geom2D::PolygonSet(@polygon2)
     result = @ps + other
-    assert_equal(2, result.size)
+    assert_equal(2, result.nr_of_contours)
   end
 
   it "iterates over each segment" do

@@ -246,11 +246,11 @@ module Geom2D
 
       # Returns +true+ if the operation is a trivial one, e.g. if one polygon set is empty.
       def trivial_operation(subject_bb, clipping_bb)
-        if @subject.size * @clipping.size == 0
+        if @subject.nr_of_contours * @clipping.nr_of_contours == 0
           if @operation == :difference
             @result = @subject
           elsif @operation == :union || @operation == :xor
-            @result = (@subject.size == 0 ? @clipping : @subject)
+            @result = (@subject.nr_of_contours == 0 ? @clipping : @subject)
           end
           true
         elsif subject_bb.min_x > clipping_bb.max_x || clipping_bb.min_x > subject_bb.max_x ||
@@ -398,7 +398,7 @@ module Geom2D
           while event.other_event.point != initial_point
             processed[event] = true
             processed[event.other_event] = true
-            if polygon.size > 1 &&
+            if polygon.nr_of_vertices > 1 &&
                 Algorithms.ccw(polygon[-2], polygon[-1], event.other_event.point) == 0
               polygon.pop
             end

@@ -45,7 +45,7 @@ module Geom2D
     end
 
     # Returns the number of polygons in this set.
-    def size
+    def nr_of_contours
       @polygons.size
     end
 

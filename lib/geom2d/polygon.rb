@@ -22,9 +22,14 @@ module Geom2D
       vertices.each {|value| @vertices << Geom2D::Point(value) }
     end
 
+    # Returns one since a polygon object represents a single polygon.
+    def nr_of_contours
+      1
+    end
+
     # Returns the number of vertices in the polygon.
-    def size
-      @vertices.count
+    def nr_of_vertices
+      @vertices.size
     end
 
     # Returns the i-th vertex of the polygon.

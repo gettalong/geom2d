@@ -14,8 +14,12 @@ describe Geom2D::Polygon do
     assert_equal(@vertices, polygon.to_a)
   end
 
+  it "returns one for the number of contours" do
+    assert_equal(1, @polygon.nr_of_contours)
+  end
+
   it "returns the number of vertices" do
-    assert_equal(4, @polygon.size)
+    assert_equal(4, @polygon.nr_of_vertices)
   end
 
   it "returns the i-th vertex" do
