@@ -39,7 +39,6 @@ module Geom2D
     end
   end
 
-
   # Creates a new Segment from +start_point+ to +end_point+ or, if +vector+ is given, from
   # +start_point+ to +start_point+ + +vector+.
   #
