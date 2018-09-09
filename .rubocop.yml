@@ -55,7 +55,10 @@ Style/SymbolArray:
 Style/WordArray:
   MinSize: 5
 
-Style/TrailingCommaInLiteral:
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: comma
 
 Style/ClassCheck:
@@ -96,7 +99,7 @@ Style/Documentation:
 Style/GuardClause:
   Enabled: false # false alarms
 
-Style/MethodMissing:
+Style/MethodMissingSuper:
   Enabled: false # why the need to fallback to super?
 
 Style/Next:
@@ -177,6 +180,9 @@ Naming/MethodName:
   Exclude:
     - lib/geom2d.rb # bc of ::Point, ::Segment, ...
 
+Naming/UncommunicativeMethodParamName:
+  Enabled: false
+
 Naming/HeredocDelimiterNaming:
   Enabled: false # we like our delimiters short and obvious
 
@@ -187,9 +193,6 @@ Lint/LiteralAsCondition:
 Lint/HandleExceptions:
   Exclude:
     - test/test_helper.rb
-
-Performance/HashEachMethods:
-  Enabled: false # false alarms
 
 
 # These cops should be run manually from time to time

@@ -51,6 +51,7 @@ namespace :dev do
 
     s.require_path = 'lib'
     s.required_ruby_version = '>= 2.4'
+    s.add_development_dependency('rubocop', '~> 0.58', '>= 0.58.2')
 
     s.author = 'Thomas Leitner'
     s.email = 't_leitner@gmx.at'

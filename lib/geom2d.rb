@@ -29,7 +29,7 @@ module Geom2D
   # Creates a new Point object from the given coordinates.
   #
   # See: Point.new
-  def self::Point(x, y = nil)
+  def self.Point(x, y = nil)
     if x.kind_of?(Point)
       x
     elsif y
@@ -43,7 +43,7 @@ module Geom2D
   # +start_point+ to +start_point+ + +vector+.
   #
   # See: Segment.new
-  def self::Segment(start_point, end_point = nil, vector: nil)
+  def self.Segment(start_point, end_point = nil, vector: nil)
     if end_point
       Segment.new(start_point, end_point)
     elsif vector
@@ -56,14 +56,14 @@ module Geom2D
   # Creates a new Polygon object from the given vertices.
   #
   # See: Polygon.new
-  def self::Polygon(*vertices)
+  def self.Polygon(*vertices)
     Polygon.new(vertices)
   end
 
   # Creates a PolygonSet from the given array of Polygon instances.
   #
   # See: PolygonSet.new
-  def self::PolygonSet(*polygons)
+  def self.PolygonSet(*polygons)
     PolygonSet.new(polygons)
   end
 
