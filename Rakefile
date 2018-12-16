@@ -21,6 +21,7 @@ namespace :dev do
       'lib/**/*.rb',
       'test/**/*',
       'Rakefile',
+      'CHANGELOG.md',
       'LICENSE',
       'VERSION',
       'CONTRIBUTERS',
