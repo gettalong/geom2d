@@ -11,6 +11,6 @@
 module Geom2D
 
   # The version of Geom2D
-  VERSION = '0.1.0'
+  VERSION = '0.2.0'
 
 end
