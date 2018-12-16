@@ -83,7 +83,7 @@ module Geom2D
     def ccw?
       return true if @vertices.empty?
       area = @vertices[-1].wedge(@vertices[0])
-      1.upto(@vertices.size - 2) {|i| area += @vertices[i].wedge(@vertices[i + 1]) }
+      0.upto(@vertices.size - 2) {|i| area += @vertices[i].wedge(@vertices[i + 1]) }
       area >= 0
     end
 

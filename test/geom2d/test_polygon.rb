@@ -56,6 +56,8 @@ describe Geom2D::Polygon do
     assert(@polygon.ccw?)
     @polygon.reverse!
     refute(@polygon.ccw?)
+    refute(Geom2D::Polygon([2, 2], [20, 5], [10, 3.0]).ccw?)
+    assert(Geom2D::Polygon([2, 2], [20, 5], [10, 3.4]).ccw?)
   end
 
   it "reverses the vertex list" do
