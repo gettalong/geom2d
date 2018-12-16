@@ -66,12 +66,12 @@ module Geom2D
         attr_accessor :prev_in_result
 
         # Creates a new SweepEvent.
-        def initialize(left, point, polygon_type, other_event: nil, edge_type: :normal)
+        def initialize(left, point, polygon_type, other_event = nil)
           @left = left
           @point = point
           @other_event = other_event
           @polygon_type = polygon_type
-          @edge_type = edge_type
+          @edge_type = :normal
         end
 
         # Returns +true+ if this event's line #segment is below the point +p+.
@@ -271,7 +271,7 @@ module Geom2D
         return if segment.degenerate?
         start_point_is_left = (segment.start_point == segment.min)
         e1 = SweepEvent.new(start_point_is_left, segment.start_point, polygon_type)
-        e2 = SweepEvent.new(!start_point_is_left, segment.end_point, polygon_type, other_event: e1)
+        e2 = SweepEvent.new(!start_point_is_left, segment.end_point, polygon_type, e1)
         e1.other_event = e2
         @event_queue.push(e1).push(e2)
       end
@@ -363,8 +363,8 @@ module Geom2D
       # Divides the event's segment at the given point (which has to be inside the segment) and adds
       # the resulting events to the event queue.
       def divide_segment(event, point)
-        right = SweepEvent.new(false, point, event.polygon_type, other_event: event)
-        left = SweepEvent.new(true, point, event.polygon_type, other_event: event.other_event)
+        right = SweepEvent.new(false, point, event.polygon_type, event)
+        left = SweepEvent.new(true, point, event.polygon_type, event.other_event)
         event.other_event.other_event = left
         event.other_event = right
         @event_queue.push(left).push(right)

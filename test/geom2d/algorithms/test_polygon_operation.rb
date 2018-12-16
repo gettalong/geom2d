@@ -7,7 +7,7 @@ describe Geom2D::Algorithms::PolygonOperation::SweepEvent do
   before do
     @klass = Geom2D::Algorithms::PolygonOperation::SweepEvent
     @left = @klass.new(true, Geom2D::Point(5, 3), :subject)
-    @right = @klass.new(false, Geom2D::Point(8, 5), :subject, other_event: @left)
+    @right = @klass.new(false, Geom2D::Point(8, 5), :subject, @left)
     @left.other_event = @right
   end
 
@@ -29,7 +29,7 @@ describe Geom2D::Algorithms::PolygonOperation::SweepEvent do
   end
 
   it "detects vertical segments" do
-    assert(@klass.new(false, Geom2D::Point(5, 8), :subject, other_event: @left).vertical?)
+    assert(@klass.new(false, Geom2D::Point(5, 8), :subject, @left).vertical?)
   end
 end
 
