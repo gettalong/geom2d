@@ -110,27 +110,32 @@ module Geom2D
     def intersect(segment)
       p0 = start_point
       p1 = segment.start_point
-      d0 = direction
-      d1 = segment.direction
-      e = p1 - p0
+      d0x = end_point.x - start_point.x
+      d0y = end_point.y - start_point.y
+      d1x = segment.end_point.x - segment.start_point.x
+      d1y = segment.end_point.y - segment.start_point.y
+      ex = p1.x - p0.x
+      ey = p1.y - p0.y
 
-      cross = d0.wedge(d1).to_f # cross product of direction vectors
+      cross = (d0x * d1y - d1x * d0y).to_f # cross product of direction vectors
 
       if cross.abs > Utils.precision # segments are not parallel
-        s = e.wedge(d1) / cross
+        s = (ex * d1y - d1x * ey) / cross
         return nil if s < 0 || s > 1
-        t = e.wedge(d0) / cross
+        t = (ex * d0y - d0x * ey) / cross
         return nil if t < 0 || t > 1
 
-        result = p0 + [s * d0.x, s * d0.y]
-        result = start_point if result == start_point
-        result = end_point if result == end_point
-        result = segment.start_point if result == segment.start_point
-        result = segment.end_point if result == segment.end_point
-        return result
+        result = p0 + Point.new(s * d0x, s * d0y)
+        return case result
+               when start_point then start_point
+               when end_point then end_point
+               when segment.start_point then segment.start_point
+               when segment.end_point then segment.end_point
+               else result
+               end
       end
 
-      return nil if e.wedge(d0).abs > Utils.precision # non-intersecting parallel segment lines
+      return nil if (ex * d0y - d0x * ey).abs > Utils.precision # non-intersecting parallel segment lines
 
       e0 = end_point
       e1 = segment.end_point
