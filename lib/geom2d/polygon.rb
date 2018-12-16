@@ -64,10 +64,8 @@ module Geom2D
       return to_enum(__method__) unless block_given?
       return unless @vertices.size > 1
 
-      0.upto(@vertices.size - 2) do |i|
-        yield(Geom2D::Segment(@vertices[i], @vertices[i + 1]))
-      end
-      yield(Geom2D::Segment(@vertices[-1], @vertices[0]))
+      @vertices.each_cons(2) {|v1, v2| yield(Geom2D::Segment.new(v1, v2)) }
+      yield(Geom2D::Segment.new(@vertices[-1], @vertices[0]))
     end
 
     # Returns the BoundingBox of this polygon, or an empty BoundingBox if the polygon has no
