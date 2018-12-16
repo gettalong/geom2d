@@ -3,6 +3,8 @@
 ### Changed
 
 * Make Segment#intersect ~1.71x faster by avoiding unnecessary object creation
+* Refactor and simplify the sorted list implementation used by the polygon
+  operations, making the latter ~1.15x faster
 
 ### Fixed
 

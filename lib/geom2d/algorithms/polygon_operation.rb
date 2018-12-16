@@ -184,9 +184,9 @@ module Geom2D
         @operation = operation
 
         @result = PolygonSet.new
-        @event_queue = Utils::SortedLinkedList.new {|a, b| a.process_after?(b) }
+        @event_queue = Utils::SortedList.new {|a, b| a.process_after?(b) }
         # @sweep_line should really be a sorted data structure with O(log(n)) for insert/search!
-        @sweep_line = Utils::SortedLinkedList.new {|a, b| a.segment_below?(b) }
+        @sweep_line = Utils::SortedList.new {|a, b| a.segment_below?(b) }
         @sorted_events = []
       end
 
@@ -212,9 +212,7 @@ module Geom2D
 
           @event_queue.pop
           if event.left # the segment hast to be inserted into status line
-            node = @sweep_line.insert(event)
-            prev_event = (node.prev_node.anchor? ? nil : node.prev_node.value)
-            next_event = (node.next_node.anchor? ? nil : node.next_node.value)
+            prevprev_event, prev_event, next_event = @sweep_line.insert(event)
 
             compute_event_fields(event, prev_event)
             if next_event && possible_intersection(event, next_event) == 2
@@ -222,19 +220,14 @@ module Geom2D
               compute_event_fields(next_event, event)
             end
             if prev_event && possible_intersection(prev_event, event) == 2
-              prevprev_ev = (node.prev_node.prev_node.anchor? ? nil : node.prev_node.prev_node.value)
-              compute_event_fields(prev_event, prevprev_ev)
+              compute_event_fields(prev_event, prevprev_event)
               compute_event_fields(event, prev_event)
             end
           else # the segment has to be removed from the status line
             event = event.other_event # use left event
-            node = @sweep_line.find_node(event)
-
-            next_node = node.next_node
-            prev_node = node.prev_node
-            node.delete
-            unless prev_node.anchor? || next_node.anchor?
-              possible_intersection(prev_node.value, next_node.value)
+            prev_ev, next_ev = @sweep_line.delete(event)
+            if prev_ev && next_ev
+              possible_intersection(prev_ev, next_ev)
             end
           end
         end

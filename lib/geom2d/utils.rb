@@ -13,7 +13,7 @@ module Geom2D
   # Contains utility methods and classes.
   module Utils
 
-    autoload(:SortedLinkedList, 'geom2d/utils/sorted_linked_list')
+    autoload(:SortedList, 'geom2d/utils/sorted_list')
 
     # The precision when comparing two floats, defaults to 1e-10.
     singleton_class.attr_accessor :precision

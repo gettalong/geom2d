@@ -1,27 +1,36 @@
 # -*- frozen_string_literal: true -*-
 
 require 'test_helper'
-require 'geom2d/utils/sorted_linked_list'
+require 'geom2d/utils/sorted_list'
 
-describe Geom2D::Utils::SortedLinkedList do
+describe Geom2D::Utils::SortedList do
   before do
-    @list = Geom2D::Utils::SortedLinkedList.new {|a, b| a < b }
+    @list = Geom2D::Utils::SortedList.new {|a, b| a < b }
   end
 
   describe "insert" do
-    it "inserts a value and returns its associated node" do
-      node = @list.insert(1)
-      assert_equal(1, node.value)
-      assert(node.prev_node.anchor?)
-      assert(node.next_node.anchor?)
+    it "inserts a value and returns surrounding values" do
+      ppv, pv, nv = @list.insert(1)
+      assert_nil(ppv)
+      assert_nil(pv)
+      assert_nil(nv)
     end
 
     it "uses the comparator for choosing the place to insert the value" do
       @list.insert(10)
       @list.insert(5)
       @list.insert(8)
-      assert_equal([5, 8, 10], @list.to_a)
+      ppv, pv, nv = @list.insert(9)
+      assert_equal([5, 8, 10], [ppv, pv, nv])
+      assert_equal([5, 8, 9, 10], @list.to_a)
     end
+  end
+
+  it "deletes a value from the list and returns the neighbouring values" do
+    @list.push(8).push(5).push(3).push(4).push(6)
+    assert_equal([6, nil], @list.delete(8))
+    assert_equal([nil, 4], @list.delete(3))
+    assert_equal([4, 6], @list.delete(5))
   end
 
   it "returns whether it is empty" do
@@ -41,14 +50,6 @@ describe Geom2D::Utils::SortedLinkedList do
     assert_equal(10, @list.last)
   end
 
-  it "returns the first node found for a given value" do
-    @list.push(5).push(8)
-    node = @list.find_node(8)
-    assert_equal(8, node.value)
-    assert_equal(5, node.prev_node.value)
-    assert(node.next_node.anchor?)
-  end
-
   it "pops the top value of the list" do
     @list.push(8).push(5)
     assert_equal(8, @list.pop)
@@ -58,11 +59,6 @@ describe Geom2D::Utils::SortedLinkedList do
     @list.push(8).push(5)
     @list.clear
     assert(@list.empty?)
-  end
-
-  it "deletes a value from the list" do
-    @list.push(8).push(5)
-    assert_equal(8, @list.delete(8))
   end
 
   it "can be inspected" do
