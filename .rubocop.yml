@@ -1,4 +1,7 @@
 AllCops:
+  Include:
+    - lib/**/*.rb
+    - test/**/*.rb
   TargetRubyVersion: 2.4
 
 
@@ -83,7 +86,7 @@ Style/Semicolon:
   AllowAsExpressionSeparator: true
 
 Style/YodaCondition:
-  EnforcedStyle: equality_operators_only
+  EnforcedStyle: forbid_for_equality_operators_only
 
 Style/EmptyElse:
   EnforcedStyle: empty
@@ -159,6 +162,9 @@ Layout/EmptyLinesAroundModuleBody:
 
 Layout/EmptyLinesAroundClassBody:
   EnforcedStyle: empty_lines
+
+Layout/EmptyLineAfterGuardClause:
+    Enabled: false
 
 Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
