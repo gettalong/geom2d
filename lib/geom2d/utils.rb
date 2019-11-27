@@ -16,7 +16,7 @@ module Geom2D
     autoload(:SortedList, 'geom2d/utils/sorted_list')
 
     # The precision when comparing two floats, defaults to 1e-10.
-    singleton_class.attr_accessor :precision
+    singleton_class.send(:attr_accessor, :precision)
     self.precision = 1e-10
 
     private
