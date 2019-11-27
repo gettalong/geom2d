@@ -1,3 +1,10 @@
+## 0.3.1 - 2019-11-27
+
+### Fixed
+
+- Removed debug statements
+
+
 ## 0.3.0 - 2019-11-27
 
 ### Fixed
