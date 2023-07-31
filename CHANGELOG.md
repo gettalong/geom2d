@@ -1,5 +1,9 @@
 ## Unreleased
 
+### Added
+
+* Class Geom2D::Rectangle for a more compact rectangle representation
+
 ### Changed
 
 * Require at least Ruby 2.6

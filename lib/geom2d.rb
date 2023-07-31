@@ -19,6 +19,7 @@ module Geom2D
   autoload(:Segment, 'geom2d/segment')
   autoload(:Polygon, 'geom2d/polygon')
   autoload(:PolygonSet, 'geom2d/polygon_set')
+  autoload(:Rectangle, 'geom2d/rectangle')
 
   autoload(:BoundingBox, 'geom2d/bounding_box')
   autoload(:Algorithms, 'geom2d/algorithms')
@@ -65,6 +66,14 @@ module Geom2D
   # See: PolygonSet.new
   def self.PolygonSet(*polygons)
     PolygonSet.new(polygons)
+  end
+
+  # Creates a Rectangle from the given bottom-left point (x, y) and the provided +width+ and
+  # +height+.
+  #
+  # See: Rectangle.new
+  def self.Rectangle(x, y, width, height)
+    Rectangle.new(x, y, width, height)
   end
 
 end

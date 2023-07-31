@@ -18,6 +18,7 @@ Copyright (C) 2018-2023 Thomas Leitner <t_leitner@gmx.at>, licensed under the MI
   * Segment
   * Polygon
   * PolygonSet
+  * Rectangle
   * Polyline (TODO)
   * Rectangle (TODO)
   * QuadraticCurve (TODO)
