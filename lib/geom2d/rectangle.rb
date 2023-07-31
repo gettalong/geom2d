@@ -87,6 +87,12 @@ module Geom2D
     end
     alias to_s inspect
 
+    # Returns an array with the vertices of the rectangle.
+    def to_ary
+      vertices
+    end
+    alias to_a to_ary
+
     private
 
     # Returns an array with the four corners of the rectangle.

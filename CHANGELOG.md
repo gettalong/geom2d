@@ -1,3 +1,10 @@
+## Unreleased
+
+### Added
+
+* Methods `#to_ary` and `#to_a` for Geom2D::Rectangle
+
+
 ## 0.4.0 - 2023-07-31
 
 ### Added

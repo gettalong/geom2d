@@ -41,6 +41,10 @@ describe Geom2D::Rectangle do
     assert(@rectangle.ccw?)
   end
 
+  it "returns the vertices when asked to be converted to an array" do
+    assert_equal([[10, 20], [110, 20], [110, 70], [10, 70]], @rectangle.to_ary)
+  end
+
   it "returns a useful inspection string" do
     assert_equal("Rectangle[(10,20),width=100,height=50]", @rectangle.inspect)
   end
