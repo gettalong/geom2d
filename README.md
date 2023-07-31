@@ -7,8 +7,8 @@ by Bézier curves.
 
 ## License
 
-Copyright (C) 2018 Thomas Leitner <t_leitner@gmx.at>, licensed under the MIT - see the **LICENSE**
-file.
+Copyright (C) 2018-2023 Thomas Leitner <t_leitner@gmx.at>, licensed under the MIT - see the
+**LICENSE** file.
 
 
 ## Features

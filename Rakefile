@@ -78,7 +78,7 @@ namespace :dev do
     statement = <<~STATEMENT
       #--
       # geom2d - 2D Geometric Objects and Algorithms
-      # Copyright (C) 2018 Thomas Leitner <t_leitner@gmx.at>
+      # Copyright (C) 2018-2023 Thomas Leitner <t_leitner@gmx.at>
       #
       # This software may be modified and distributed under the terms
       # of the MIT license.  See the LICENSE file for details.
@@ -91,7 +91,7 @@ namespace :dev do
         inserted = true
         puts "Updating file #{file}"
         old = File.read(file)
-        old.sub!(/^#--.*?\n#\+\+\n|\A/m, statement)
+        old.sub!(/^#--.*?\n#\+\+\n/m, statement)
         File.write(file, old)
       end
     end
