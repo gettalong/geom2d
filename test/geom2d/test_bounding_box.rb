@@ -21,7 +21,7 @@ describe Geom2D::BoundingBox do
     end
 
     it "fails if an invalid argument is given" do
-      assert_raises(ArgumentError) { @bbox + "string" }
+      assert_raises(ArgumentError) { @bbox + :string }
     end
   end
 

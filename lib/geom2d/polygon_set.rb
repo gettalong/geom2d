@@ -57,7 +57,7 @@ module Geom2D
       result
     end
 
-    def inspect #:nodoc:
+    def inspect # :nodoc:
       "PolygonSet#{@polygons}"
     end
     alias to_s inspect

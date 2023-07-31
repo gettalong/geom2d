@@ -96,7 +96,7 @@ module Geom2D
     end
     alias to_a to_ary
 
-    def inspect #:nodoc:
+    def inspect # :nodoc:
       "Polygon#{@vertices}"
     end
     alias to_s inspect

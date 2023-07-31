@@ -40,7 +40,7 @@ module Geom2D
       # Yields each value in sorted order.
       #
       # If no block is given, an enumerator is returned.
-      def each(&block) #:yield: value
+      def each(&block) # :yield: value
         @list.each(&block)
       end
 
@@ -76,7 +76,7 @@ module Geom2D
         @list.pop
       end
 
-      def inspect #:nodoc:
+      def inspect # :nodoc:
         "#<#{self.class.name}:0x#{object_id.to_s(16).rjust(0.size * 2, '0')} #{to_a}>"
       end
 

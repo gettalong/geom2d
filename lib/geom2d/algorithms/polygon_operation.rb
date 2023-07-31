@@ -240,17 +240,19 @@ module Geom2D
       # Returns +true+ if the operation is a trivial one, e.g. if one polygon set is empty.
       def trivial_operation(subject_bb, clipping_bb)
         if @subject.nr_of_contours * @clipping.nr_of_contours == 0
-          if @operation == :difference
+          case @operation
+          when :difference
             @result = @subject
-          elsif @operation == :union || @operation == :xor
+          when :union, :xor
             @result = (@subject.nr_of_contours == 0 ? @clipping : @subject)
           end
           true
         elsif subject_bb.min_x > clipping_bb.max_x || clipping_bb.min_x > subject_bb.max_x ||
             subject_bb.min_y > clipping_bb.max_y || clipping_bb.min_y > subject_bb.max_y
-          if @operation == :difference
+          case @operation
+          when :difference
             @result = @subject
-          elsif @operation == :union || @operation == :xor
+          when :union, :xor
             @result = @subject + @clipping
           end
           true

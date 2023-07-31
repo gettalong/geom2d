@@ -75,7 +75,7 @@ module Geom2D
       [@min_x, @min_y, @max_x, @max_y]
     end
 
-    def inspect #:nodoc:
+    def inspect # :nodoc:
       "BBox[#{min_x}, #{min_y}, #{max_x}, #{max_y}]"
     end
 

@@ -197,7 +197,7 @@ module Geom2D
       start_point == other.start_point && end_point == other.end_point
     end
 
-    def inspect #:nodoc:
+    def inspect # :nodoc:
       "Segment[#{start_point}-#{end_point}]"
     end
     alias to_s inspect

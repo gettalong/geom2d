@@ -66,7 +66,7 @@ describe Geom2D::Point do
     end
 
     it "fails if the argument class is invalid" do
-      assert_raises(ArgumentError) { @point + "str" }
+      assert_raises(ArgumentError) { @point + :test }
     end
   end
 

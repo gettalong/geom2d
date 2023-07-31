@@ -5,12 +5,10 @@ AllCops:
   TargetRubyVersion: 2.4
 
 
-Metrics/LineLength:
-  Max: 110 # Preferred length is 100
-
 Metrics/ParameterLists:
   CountKeywordArgs: false
   Max: 8
+  MaxOptionalParameters: 4
 
 Metrics/BlockLength:
   Enabled: false
@@ -77,7 +75,7 @@ Style/NumericPredicate:
   EnforcedStyle: comparison
 
 Style/TernaryParentheses:
-  EnforcedStyle: require_parentheses
+  EnforcedStyle: require_no_parentheses
 
 Style/FormatString:
   EnforcedStyle: sprintf
@@ -101,9 +99,6 @@ Style/Documentation:
 
 Style/GuardClause:
   Enabled: false # false alarms
-
-Style/MethodMissingSuper:
-  Enabled: false # why the need to fallback to super?
 
 Style/Next:
   Enabled: false # not really useful
@@ -145,7 +140,10 @@ Style/MultipleComparison:
   Enabled: false # why should an array be created? especially if only two items are compared
 
 
-Layout/AlignHash:
+Layout/LineLength:
+  Max: 110 # Preferred length is 100
+
+Layout/HashAlignment:
   EnforcedLastArgumentHashStyle: ignore_implicit
 
 Layout/SpaceInsideBlockBraces:
@@ -178,7 +176,7 @@ Layout/DotPosition:
 Layout/EmptyLineAfterMagicComment:
   Enabled: false # we have the magic comment and then the license
 
-Layout/IndentAssignment:
+Layout/AssignmentIndentation:
   Enabled: false # false alarms
 
 
@@ -186,7 +184,7 @@ Naming/MethodName:
   Exclude:
     - lib/geom2d.rb # bc of ::Point, ::Segment, ...
 
-Naming/UncommunicativeMethodParamName:
+Naming/MethodParameterName:
   Enabled: false
 
 Naming/HeredocDelimiterNaming:
@@ -196,10 +194,173 @@ Naming/HeredocDelimiterNaming:
 Lint/LiteralAsCondition:
   Enabled: false # we use while true
 
-Lint/HandleExceptions:
+Lint/SuppressedException:
   Exclude:
     - test/test_helper.rb
 
+Lint/MissingSuper:
+  Enabled: false # why the need to fallback to super?
+
+Lint/SendWithMixinArgument:
+  Exclude:
+    - test/test_helper.rb
+
+Gemspec/RequireMFA: # new in 1.23
+  Enabled: true
+Layout/LineEndStringConcatenationIndentation: # new in 1.18
+  Enabled: false
+Layout/SpaceBeforeBrackets: # new in 1.7
+  Enabled: true
+Lint/AmbiguousAssignment: # new in 1.7
+  Enabled: true
+Lint/AmbiguousOperatorPrecedence:
+  Enabled: false
+Lint/AmbiguousRange: # new in 1.19
+  Enabled: true
+Lint/DeprecatedConstants: # new in 1.8
+  Enabled: true
+Lint/DuplicateBranch: # new in 1.3
+  Enabled: false
+Lint/DuplicateRegexpCharacterClassElement: # new in 1.1
+  Enabled: true
+Lint/EmptyBlock: # new in 1.1
+  Enabled: false
+Lint/EmptyClass: # new in 1.3
+  Enabled: true
+Lint/EmptyInPattern: # new in 1.16
+  Enabled: true
+Lint/IncompatibleIoSelectWithFiberScheduler: # new in 1.21
+  Enabled: true
+Lint/LambdaWithoutLiteralBlock: # new in 1.8
+  Enabled: true
+Lint/NoReturnInBeginEndBlocks: # new in 1.2
+  Enabled: true
+Lint/NumberedParameterAssignment: # new in 1.9
+  Enabled: true
+Lint/OrAssignmentToConstant: # new in 1.9
+  Enabled: true
+Lint/RedundantDirGlobSort: # new in 1.8
+  Enabled: true
+Lint/RequireRelativeSelfPath: # new in 1.22
+  Enabled: true
+Lint/SymbolConversion: # new in 1.9
+  Enabled: true
+  Exclude:
+    - test/hexapdf/content/test_operator.rb # conflict with other cop
+Lint/ToEnumArguments: # new in 1.1
+  Enabled: true
+Lint/TripleQuotes: # new in 1.9
+  Enabled: true
+Lint/UnexpectedBlockArity: # new in 1.5
+  Enabled: true
+Lint/UnmodifiedReduceAccumulator: # new in 1.1
+  Enabled: false
+Lint/UselessRuby2Keywords: # new in 1.23
+  Enabled: true
+Naming/BlockForwarding: # new in 1.24
+  Enabled: true
+Security/IoMethods: # new in 1.22
+  Enabled: true
+Style/ArgumentsForwarding: # new in 1.1
+  Enabled: true
+Style/CollectionCompact: # new in 1.2
+  Enabled: true
+Style/DocumentDynamicEvalDefinition: # new in 1.1
+  Enabled: false
+Style/EndlessMethod: # new in 1.8
+  Enabled: true
+Style/FileRead: # new in 1.24
+  Enabled: true
+Style/FileWrite: # new in 1.24
+  Enabled: true
+Style/HashConversion: # new in 1.10
+  Enabled: true
+Style/HashExcept: # new in 1.7
+  Enabled: true
+Style/IfWithBooleanLiteralBranches: # new in 1.9
+  Enabled: true
+Style/InPatternThen: # new in 1.16
+  Enabled: true
+Style/MapToHash: # new in 1.24
+  Enabled: true
+Style/MultilineInPatternThen: # new in 1.16
+  Enabled: true
+Style/NegatedIfElseCondition: # new in 1.2
+  Enabled: true
+  Exclude:
+    - lib/hexapdf/filter/ascii85_decode.rb
+Style/NilLambda: # new in 1.3
+  Enabled: true
+Style/NumberedParameters: # new in 1.22
+  Enabled: true
+Style/NumberedParametersLimit: # new in 1.22
+  Enabled: true
+Style/OpenStructUse: # new in 1.23
+  Enabled: false
+Style/QuotedSymbols: # new in 1.16
+  Enabled: true
+Style/RedundantArgument: # new in 1.4
+  Enabled: true
+Style/RedundantSelfAssignmentBranch: # new in 1.19
+  Enabled: true
+  Exclude:
+    - lib/hexapdf/filter/flate_decode.rb
+Style/SelectByRegexp: # new in 1.22
+  Enabled: true
+Style/StringChars: # new in 1.12
+  Enabled: true
+Style/SwapValues: # new in 1.1
+  Enabled: true
+Gemspec/DeprecatedAttributeAssignment: # new in 1.30
+  Enabled: true
+Layout/LineContinuationLeadingSpace: # new in 1.31
+  Enabled: true
+Layout/LineContinuationSpacing: # new in 1.31
+  Enabled: true
+Lint/ConstantOverwrittenInRescue: # new in 1.31
+  Enabled: true
+Lint/DuplicateMagicComment: # new in 1.37
+  Enabled: true
+Lint/NonAtomicFileOperation: # new in 1.31
+  Enabled: true
+Lint/RefinementImportMethods: # new in 1.27
+  Enabled: true
+Lint/RequireRangeParentheses: # new in 1.32
+  Enabled: true
+Security/CompoundHash: # new in 1.28
+  Enabled: false
+Style/ArrayIntersect: # new in 1.40
+  Enabled: true
+Style/ConcatArrayLiterals: # new in 1.41
+  Enabled: true
+Style/EmptyHeredoc: # new in 1.32
+  Enabled: true
+Style/EnvHome: # new in 1.29
+  Enabled: true
+Style/FetchEnvVar: # new in 1.28
+  Enabled: true
+Style/MagicCommentFormat: # new in 1.35
+  Enabled: true
+Style/MapCompactWithConditionalBlock: # new in 1.30
+  Enabled: true
+Style/NestedFileDirname: # new in 1.26
+  Enabled: true
+Style/ObjectThen: # new in 1.28
+  Enabled: true
+Style/OperatorMethodCall: # new in 1.37
+  Enabled: true
+Style/RedundantConstantBase: # new in 1.40
+  Enabled: true
+Style/RedundantDoubleSplatHashBraces: # new in 1.41
+  Enabled: true
+Style/RedundantEach: # new in 1.38
+  Enabled: true
+Style/RedundantInitialize: # new in 1.27
+  Enabled: true
+Style/RedundantStringEscape: # new in 1.37
+  Enabled: true
+Style/SlicingWithRange:
+  Enabled: false
 
 # These cops should be run manually from time to time
 # Style/MutableConstant
