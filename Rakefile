@@ -51,7 +51,7 @@ namespace :dev do
     s.files = PKG_FILES.to_a
 
     s.require_path = 'lib'
-    s.required_ruby_version = '>= 2.4'
+    s.required_ruby_version = '>= 2.6'
     s.add_development_dependency('rubocop', '~> 1.0', '>= 1.41.1')
 
     s.author = 'Thomas Leitner'

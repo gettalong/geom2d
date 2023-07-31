@@ -2,7 +2,7 @@ AllCops:
   Include:
     - lib/**/*.rb
     - test/**/*.rb
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.6
 
 
 Metrics/ParameterLists:

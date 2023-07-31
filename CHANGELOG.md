@@ -1,3 +1,10 @@
+## Unreleased
+
+### Changed
+
+* Require at least Ruby 2.6
+
+
 ## 0.3.1 - 2019-11-27
 
 ### Fixed
